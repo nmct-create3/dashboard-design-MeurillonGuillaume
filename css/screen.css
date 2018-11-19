@@ -8,19 +8,28 @@
 
 :root {
     /* colors */
-    --color-alpha-light: MEDIUMSLATEBLUE;
-    --color-alpha: SLATEBLUE;
-
-    --color-neutral-light: LIGHTSLATEGRAY;
-    --color-neutral: SLATEGRAY;
+    --color-alpha-light: #43425D;
+    --color-alpha: #3B3B53;
+    --color-neutral-light: #FFFFFF;
+    --color-neutral: #A5A4BF;
     --color-neutral-dark: DARKSLATEGRAY;
-
+    --color-neutral-xxxx-light: #F0F0F7;
+    --color-neutral-xxx-light: #EBEBF2;
+    --color-neutral-xx-light: #F5F6FA;
+    --color-neutral-x-light: #A3A6B4;
     /* Shadows */
-
+    --box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
+    /* Whitespace */
+    --baseline: 5px;
+    --baseline-xx: calc(var(--baseline) * 2);
+    --baseline-xxx: calc(var(--baseline) * 3);
+    --baseline-xxxx: calc(var(--baseline) * 4);
+    --baseline-xxxxx: calc(var(--baseline) * 5);
     /* border radius */
-
     /* transitions */
     --transition-alpha: .1s;
+    /* Sizing */
+    --sidebar-width: 260px;
 }
 
 /*------------------------------------*\
@@ -36,7 +45,7 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     color: var(--color-neutral-dark);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -44,9 +53,7 @@ html {
     background-color: white;
 }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
     box-sizing: inherit;
 }
 
@@ -90,9 +97,7 @@ img {
     Default markup for typographic elements
 */
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     font-weight: 700;
 }
 
@@ -114,32 +119,22 @@ h3 {
     margin: 0 0 24px;
 }
 
-h4,
-h5,
-h6 {
+h4, h5, h6 {
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
     margin: 0 0 24px;
 }
 
-p,
-ol,
-ul,
-dl,
-table,
-address,
-figure {
+p, ol, ul, dl, table, address, figure {
     margin: 0 0 24px;
 }
 
-ul,
-ol {
+ul, ol {
     padding-left: 24px;
 }
 
-li ul,
-li ol {
+li ul, li ol {
     margin-bottom: 0;
 }
 
@@ -177,18 +172,15 @@ a {
     outline-offset: 2px;
 }
 
-a:visited,
-a:active {
+a:visited, a:active {
     color: var(--color-alpha);
 }
 
-a:hover,
-a:focus {
+a:hover, a:focus {
     color: var(--color-alpha-light);
 }
 
-label,
-input {
+label, input {
     display: block;
 }
 
@@ -224,7 +216,8 @@ input::placeholder {
 .o-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 79.5em; /* 79.5 * 16px = 1272 */
+    max-width: 79.5em;
+    /* 79.5 * 16px = 1272 */
     width: 100%;
 }
 
@@ -252,18 +245,14 @@ input::placeholder {
     width: auto;
     overflow: visible;
     background: transparent;
-
     /* inherit font & color from ancestor */
     color: inherit;
     font: inherit;
-
     /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
     line-height: normal;
-
     /* Corrects font smoothing for webkit */
     -webkit-font-smoothing: inherit;
     -moz-osx-font-smoothing: inherit;
-
     /* Corrects inability to style clickable `input` types in iOS */
     -webkit-appearance: none;
 }
@@ -288,6 +277,45 @@ input::placeholder {
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
+
+/*
+    Component: App
+    ---
+    Website main app
+*/
+
+.c-app {
+    min-height: 100vh;
+}
+
+.c-app__logo {
+    width: var(--sidebar-width);
+    height: 70px;
+    background-color: var(--color-alpha);
+}
+
+.c-app__topbar {
+    height: 70px;
+    background-color: var(--color-neutral-light);
+}
+
+.c-app__sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--color-alpha-light);
+}
+
+.c-app__main {
+    background-color: var(--color-neutral-xxxx-light);
+}
+
+@media only screen and (min-width: 764px) {
+    .c-app {
+        display: grid;
+        display: -ms-grid;
+        grid-template-columns: var(--sidebar-width) auto;
+        grid-template-rows: 70px auto;
+    }
+}
 
 /*
     Component: Logo
@@ -373,7 +401,6 @@ input::placeholder {
     max-width: none !important;
 }
 
-
 /*
     Utilities: align
     ---
@@ -437,9 +464,7 @@ No media query since this is the default in mobile first design
 */
 
 @media print {
-    *,
-    *:before,
-    *:after {
+    *, *:before, *:after {
         background: transparent !important;
         color: #000 !important;
         /* Black prints faster:
@@ -447,8 +472,7 @@ No media query since this is the default in mobile first design
         box-shadow: none !important;
         text-shadow: none !important;
     }
-    a,
-    a:visited {
+    a, a:visited {
         text-decoration: underline;
     }
     a[href]:after {
@@ -461,15 +485,13 @@ No media query since this is the default in mobile first design
     * Don't show links that are fragment identifiers,
     * or use the `javascript:` pseudo protocol
     */
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
+    a[href^="#"]:after, a[href^="javascript:"]:after {
         content: "";
     }
     pre {
         white-space: pre-wrap !important;
     }
-    pre,
-    blockquote {
+    pre, blockquote {
         border: 1px solid #999;
         page-break-inside: avoid;
     }
@@ -480,18 +502,14 @@ No media query since this is the default in mobile first design
     thead {
         display: table-header-group;
     }
-    tr,
-    img {
+    tr, img {
         page-break-inside: avoid;
     }
-    p,
-    h2,
-    h3 {
+    p, h2, h3 {
         orphans: 3;
         widows: 3;
     }
-    h2,
-    h3 {
+    h2, h3 {
         page-break-after: avoid;
     }
 }

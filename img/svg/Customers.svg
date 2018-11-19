@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        font-size: 15px;
+        font-family: SegoeUI, Segoe UI;
+      }
+    </style>
+  </defs>
+  <text id="Customers" class="cls-1" transform="translate(0 16)"><tspan x="0" y="0">Customers</tspan></text>
+</svg>
